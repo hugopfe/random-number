@@ -1,21 +1,22 @@
 const drawButton = document.querySelector(".draw-lots")
 
-function drawlots() {
-  const startNumber = Math.ceil(document.querySelector("#start").value)
-  const endNumber = Math.floor(document.querySelector("#end").value)
+function randomizeNumber() {
+  const minNumber = Math.ceil(document.querySelector("#min").value)
+  const maxNumber = Math.floor(document.querySelector("#max").value)
   const resultParagraph = document.querySelector("#result")
 
-  function randomizeNumber() {
+  if (minNumber >= maxNumber) {
+    alert("O valor máximo deve ser MAIOR que o valor mínimo!")
+  } else {
     let randomNumber =
-      Math.floor(Math.random() * (endNumber - startNumber + 1)) + startNumber
+      Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber
     // let randomNumber = null
-    // while (randomNumber < startNumber || randomNumber > endNumber) {
+    // while (randomNumber < minNumber || randomNumber > maxNumber) {
     //   randomNumber = Math.floor(Math.random() * 100)
     // }
-
-    return randomNumber
+    resultParagraph.innerHTML = `<p>${randomNumber}</p>`
   }
-  resultParagraph.innerHTML = `<p>${randomizeNumber()}</p>`
+
 }
 
-drawButton.addEventListener("click", drawlots)
+drawButton.addEventListener("click", randomizeNumber)
